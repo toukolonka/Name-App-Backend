@@ -3,6 +3,7 @@ const app = express()
 const cors = require('cors')
 const Name = require('./models/name')
 
+app.use(express.static('build'))
 app.use(cors())
 
 app.get('/', (req, res) => {
@@ -16,6 +17,19 @@ app.get('/names', (req, res) => {
     })
     .catch((error) => next(error))
 })
+
+app.get("/names/:name", (request, response, next) => {
+    console.log(request.params.name)
+    Name.find({ name: request.params.name })
+      .then((name) => {
+        if (name) {
+          response.json(name)
+        } else {
+          response.status(404).end()
+        }
+      })
+      .catch((error) => next(error))
+  })
 
 const PORT = 3001
 app.listen(PORT, () => {
