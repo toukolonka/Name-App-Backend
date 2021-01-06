@@ -10,7 +10,7 @@ app.get('/', (req, res) => {
   res.send('<h1>Hello World!</h1>')
 })
 
-app.get('/names', (req, res) => {
+app.get('/api/names', (req, res) => {
   Name.find({})
     .then((names) => {
       res.json(names)
@@ -18,7 +18,7 @@ app.get('/names', (req, res) => {
     .catch((error) => next(error))
 })
 
-app.get("/names/:name", (request, response, next) => {
+app.get("/api/names/:name", (request, response, next) => {
     console.log(request.params.name)
     Name.find({ name: request.params.name })
       .then((name) => {
