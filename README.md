@@ -6,4 +6,6 @@
 
 `npm install`
 
-`npm start`
+`npm start` - starts server on localhost:3001
+
+You can find the REST API on localhost:3001/api/names
