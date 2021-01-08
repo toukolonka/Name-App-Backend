@@ -19,7 +19,6 @@ app.get('/api/names', (req, res) => {
 })
 
 app.get("/api/names/:name", (request, response, next) => {
-    console.log(request.params.name)
     Name.find({ name: request.params.name })
       .then((name) => {
         if (name) {
